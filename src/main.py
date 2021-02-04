@@ -83,7 +83,7 @@ def load_jekyll():
 
 @st.cache(allow_output_mutation=True, max_entries=1) #ttl=1200,
 def load_tokenizer():
-    tokenizer = AutoTokenizer.from_pretrained('microsoft/DialoGPT-small', TOKENIZERS_PARALLELISM=False)
+    tokenizer = AutoTokenizer.from_pretrained('microsoft/DialoGPT-small', TOKENIZERS_PARALLELISM='false')
     #Naughty word filtering not currently working
     #badfile = open("badwords.txt", "r")
     #badlist = []
@@ -240,11 +240,13 @@ Due to the imprecise nature of the training materials, the results can be unpred
 
     display_app_header(main_txt,sub_txt,is_sidebar = False)
     st.markdown(subtitle)
-    display_side_panel_header("Rockbot!")
+    display_side_panel_header("Jekyll & Hyde Bot!")
     st.sidebar.markdown("""
-                        [Github](https://github.com/bigjoedata/rockbot)  
-                        [Primary Model](https://huggingface.co/bigjoedata/rockbot)  
-                        [Distilled Model](https://huggingface.co/bigjoedata/rockbot-distilgpt2/)""")
+                        [Github](https://github.com/bigjoedata/jekyllhydebot)  
+                        [Demo](https://share.streamlit.io/bigjoedata/jekyllhydebot/main/src/main.py)  
+                        **Related:**  
+                        [Rockbot](https://github.com/bigjoedata/rockbot)  
+                        [Rockbot Demo](https://share.streamlit.io/bigjoedata/rockbot/main/src/main.py)""")
     mychat()
     st.markdown("""
 ---
