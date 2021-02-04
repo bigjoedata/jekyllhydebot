@@ -107,6 +107,7 @@ thinc==8.0.1
 tokenizers==0.9.4
 toml==0.10.2
 toolz==0.11.1
+--find-links https://download.pytorch.org/whl/torch_stable.html
 torch==1.7.1+cpu
 tornado==6.1
 tqdm==4.56.0
