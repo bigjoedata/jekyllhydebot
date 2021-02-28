@@ -21,6 +21,9 @@ from transformers import (
 )
 from emoji_translate.emoji_translate import Translator
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 
 st.set_page_config(page_title="Jekyll&Hyde ChatBot") #layout='wide', initial_sidebar_state='auto'
 
@@ -83,7 +86,7 @@ def load_jekyll():
 
 @st.cache(allow_output_mutation=True, max_entries=1) #ttl=1200,
 def load_tokenizer():
-    tokenizer = AutoTokenizer.from_pretrained('microsoft/DialoGPT-small', TOKENIZERS_PARALLELISM='false')
+    tokenizer = AutoTokenizer.from_pretrained('microsoft/DialoGPT-small')
     #Naughty word filtering not currently working
     #badfile = open("badwords.txt", "r")
     #badlist = []
@@ -142,13 +145,15 @@ def mychat(): #, bad_line_ids): #emojitranslate, length_gen, temperature, topk, 
         tokenizer = load_tokenizer() #  bad_word_ids
         emo = load_emo()
         analyzer = getanalyzer()
-        hyde = load_hyde()
-        jekyll = load_jekyll()
+        #hyde = load_hyde()
+        #jekyll = load_jekyll()
         
     if session_state.personality == "hyde":
-        model = hyde
+        #model = hyde
+        model = load_hyde()
     elif session_state.personality == "jekyll":
-        model = jekyll
+        #model = jekyll
+        model = load_jekyll()
 
     chatlogholder = st.empty()
     chatholder = st.empty()
