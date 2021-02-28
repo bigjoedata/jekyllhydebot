@@ -8,7 +8,7 @@ src/backups/
 createactivate.sh
 dep_upgrade_install.sh
 dockerbuild.sh
-docker-compose.yml
+#docker-compose.yml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

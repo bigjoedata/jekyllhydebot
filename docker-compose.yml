@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  jhbot:
+    container_name: jhbot
+    image: intelligentdesigns/streamlit-plus:stbot-latest
+    restart: unless-stopped
+    volumes:
+# Mount your own Streamlit project if you'd like to /app if you'd like. main.py will run automatically
+      - ./src:/app
+    ports:
+      - 8080:8080
+    networks:
+      - default
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - STREAMLIT_SERVER_PORT=8080 #This needs to match exposed port in Dockerfile. See https://github.com/bigjoedata/streamlit-plus for dockerfile
+    # You may need to uncomment these for some use cases
+    # - enableCORS=false
+    # - enableXsrfProtection=false
+      - TZ=$TZ
+    command: streamlit run main.py
